@@ -7,4 +7,4 @@ usr/share/asterisk/conf
 usr/share/asterisk/documentation
 usr/share/asterisk/rest-api
 usr/share/dahdi/span_config.d/50-asterisk
-lib/systemd/system/asterisk.service
+contrib/systemd/asterisk.service lib/systemd/system/asterisk.service

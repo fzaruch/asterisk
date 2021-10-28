@@ -2,11 +2,11 @@
 cd "$(dirname "$0")"  # jump to curdir
 
 # Pass these on the command line.
-osdistro=debian
-oscodename=buster
+osdistro="ubuntu"
+oscodename="bionic"
 upname=asterisk
-upversion=${1:-16.17.0}  # asterisk version, e.g. 13.22.0
-debversion=${2:-0osso1}  # deb build version, e.g. 0osso1
+upversion=${1:-18.7.1}  # asterisk version, e.g. 13.22.0
+debversion=${2:-0cpqd1}  # deb build version, e.g. 0osso1
 # echo "Usage: $0 11.25.3 0osso1" >&2
 
 # Docker disallows certain tokens in versions.
@@ -25,7 +25,7 @@ if ! test -s .cache/asterisk_${upversion}.orig.tar.gz &&
 fi
 
 # Will build Asterisk for debian and place the deb files in ./dist.
-test -d dist/$codename || mkdir -p dist/$codename
+test -d dist/$oscodename || mkdir -p dist/$oscodename
 
 # Will build files.
 if ! docker build \

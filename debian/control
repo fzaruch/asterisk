@@ -156,24 +156,24 @@ Description: DAHDI devices support for the Asterisk PBX
  For more information about the Asterisk PBX, have a look at the Asterisk
  package.
 
-Package: asterisk-vpb
-Architecture: linux-any
-Depends:
- asterisk (= ${binary:Version}),
- ${misc:Depends},
- ${shlibs:Depends}
-Breaks:
- asterisk-modules (<< 1:11.6.0~dfsg-1)
-Replaces:
- asterisk-modules (<< 1:11.6.0~dfsg-1)
-Description: VoiceTronix devices support for the Asterisk PBX
- Asterisk is an Open Source PBX and telephony toolkit.
- .
- This package includes the VoiceTronix channel driver (chan_vpb.so).
- It will not be useful without kernel-level VoiceTronix support.
- .
- For more information about the Asterisk PBX, have a look at the Asterisk
- package.
+#Package: asterisk-vpb
+#Architecture: linux-any
+#Depends:
+# asterisk (= ${binary:Version}),
+# ${misc:Depends},
+# ${shlibs:Depends}
+#Breaks:
+# asterisk-modules (<< 1:11.6.0~dfsg-1)
+#Replaces:
+# asterisk-modules (<< 1:11.6.0~dfsg-1)
+#Description: VoiceTronix devices support for the Asterisk PBX
+# Asterisk is an Open Source PBX and telephony toolkit.
+# .
+# This package includes the VoiceTronix channel driver (chan_vpb.so).
+# It will not be useful without kernel-level VoiceTronix support.
+# .
+# For more information about the Asterisk PBX, have a look at the Asterisk
+# package.
 
 Package: asterisk-voicemail
 Architecture: any
@@ -196,125 +196,125 @@ Description: simple voicemail support for the Asterisk PBX
  For more information about the Asterisk PBX, have a look at the Asterisk
  package.
 
-Package: asterisk-voicemail-imapstorage
-Architecture: any
-Depends:
- asterisk (= ${binary:Version}),
- ${misc:Depends},
- ${shlibs:Depends}
-Provides:
- asterisk-voicemail-storage
-Conflicts:
- asterisk-voicemail-storage
-Description: IMAP voicemail storage support for the Asterisk PBX
- Asterisk is an Open Source PBX and telephony toolkit.
- .
- This package includes an IMAP-based voicemail storage: storing the
- voicemail in a remote IMAP mail boxes. While more complex to set up,
- it may be useful in some settings.
- .
- For more information about the Asterisk PBX, have a look at the Asterisk
- package.
+#Package: asterisk-voicemail-imapstorage
+#Architecture: any
+#Depends:
+# asterisk (= ${binary:Version}),
+# ${misc:Depends},
+# ${shlibs:Depends}
+#Provides:
+# asterisk-voicemail-storage
+#Conflicts:
+# asterisk-voicemail-storage
+#Description: IMAP voicemail storage support for the Asterisk PBX
+# Asterisk is an Open Source PBX and telephony toolkit.
+# .
+# This package includes an IMAP-based voicemail storage: storing the
+# voicemail in a remote IMAP mail boxes. While more complex to set up,
+# it may be useful in some settings.
+# .
+# For more information about the Asterisk PBX, have a look at the Asterisk
+# package.
 
-Package: asterisk-voicemail-odbcstorage
-Architecture: any
-Depends:
- asterisk (= ${binary:Version}),
- ${misc:Depends},
- ${shlibs:Depends}
-Provides:
- asterisk-voicemail-storage
-Conflicts:
- asterisk-voicemail-storage
-Description: ODBC voicemail storage support for the Asterisk PBX
- Asterisk is an Open Source PBX and telephony toolkit.
- .
- This package includes an database-based voicemail storage: storing the
- voicemail in a database accessed through the ODBC interface. While more
- complex to set up, it may be useful in some settings.
- .
- For more information about the Asterisk PBX, have a look at the Asterisk
- package.
+#Package: asterisk-voicemail-odbcstorage
+#Architecture: any
+#Depends:
+# asterisk (= ${binary:Version}),
+# ${misc:Depends},
+# ${shlibs:Depends}
+#Provides:
+# asterisk-voicemail-storage
+#Conflicts:
+# asterisk-voicemail-storage
+#Description: ODBC voicemail storage support for the Asterisk PBX
+# Asterisk is an Open Source PBX and telephony toolkit.
+# .
+# This package includes an database-based voicemail storage: storing the
+# voicemail in a database accessed through the ODBC interface. While more
+# complex to set up, it may be useful in some settings.
+# .
+# For more information about the Asterisk PBX, have a look at the Asterisk
+# package.
 
-Package: asterisk-ooh323
-Architecture: any
-Depends:
- asterisk (= ${binary:Version}),
- ${misc:Depends},
- ${shlibs:Depends}
-Description: H.323 protocol support for the Asterisk PBX - ooH323c
- Asterisk is an Open Source PBX and telephony toolkit.
- .
- This channel driver (chan_ooh323c) provides support for the H.323 protocol
- for Asterisk. This is an independent implementation that does not depend
- on OpenH323, but may be less functional than the original chan_h323.
- .
- For more information about the Asterisk PBX, have a look at the Asterisk
- package.
+#Package: asterisk-ooh323
+#Architecture: any
+#Depends:
+# asterisk (= ${binary:Version}),
+# ${misc:Depends},
+# ${shlibs:Depends}
+#Description: H.323 protocol support for the Asterisk PBX - ooH323c
+# Asterisk is an Open Source PBX and telephony toolkit.
+# .
+# This channel driver (chan_ooh323c) provides support for the H.323 protocol
+# for Asterisk. This is an independent implementation that does not depend
+# on OpenH323, but may be less functional than the original chan_h323.
+# .
+# For more information about the Asterisk PBX, have a look at the Asterisk
+# package.
 
-Package: asterisk-mp3
-Architecture: any
-Depends:
- asterisk (= ${binary:Version}),
- ${misc:Depends},
- ${shlibs:Depends}
-Description: MP3 playback support for the Asterisk PBX
- Asterisk is an Open Source PBX and telephony toolkit.
- .
- This package provides support for playing MP3-encoded files in
- Asterisk.
- .
- For more information about the Asterisk PBX, have a look at the Asterisk
- package.
+#Package: asterisk-mp3
+#Architecture: any
+#Depends:
+# asterisk (= ${binary:Version}),
+# ${misc:Depends},
+# ${shlibs:Depends}
+#Description: MP3 playback support for the Asterisk PBX
+# Asterisk is an Open Source PBX and telephony toolkit.
+# .
+# This package provides support for playing MP3-encoded files in
+# Asterisk.
+# .
+# For more information about the Asterisk PBX, have a look at the Asterisk
+# package.
 
-Package: asterisk-mysql
-Architecture: any
-Depends:
- asterisk (= ${binary:Version}),
- ${misc:Depends},
- ${shlibs:Depends}
-Description: MySQL database protocol support for the Asterisk PBX
- Asterisk is an Open Source PBX and telephony toolkit.
- .
- This package provides support for using a MySQL database to store
- configuration, call detail records, and also provides generic access to
- it from the dialplan.
- .
- For more information about the Asterisk PBX, have a look at the Asterisk
- package.
+#Package: asterisk-mysql
+#Architecture: any
+#Depends:
+# asterisk (= ${binary:Version}),
+# ${misc:Depends},
+# ${shlibs:Depends}
+#Description: MySQL database protocol support for the Asterisk PBX
+# Asterisk is an Open Source PBX and telephony toolkit.
+# .
+# This package provides support for using a MySQL database to store
+# configuration, call detail records, and also provides generic access to
+# it from the dialplan.
+# .
+# For more information about the Asterisk PBX, have a look at the Asterisk
+# package.
 
-Package: asterisk-mobile
-Architecture: linux-any
-Depends:
- asterisk (= ${binary:Version}),
- ${misc:Depends},
- ${shlibs:Depends}
-Description: Bluetooth phone support for the Asterisk PBX
- Asterisk is an Open Source PBX and telephony toolkit.
- .
- This package provides support for connecting Bluetooth devices to the
- Asterisk PBX. It allows you to:
-   * Send and receive PSTN calls and SMS messages over a Bluetooth phone.
-   * Use a Bluetooth handset as a local phone connected to your PBX.
- .
- For more information about the Asterisk PBX, have a look at the Asterisk
- package.
+#Package: asterisk-mobile
+#Architecture: linux-any
+#Depends:
+# asterisk (= ${binary:Version}),
+# ${misc:Depends},
+# ${shlibs:Depends}
+#Description: Bluetooth phone support for the Asterisk PBX
+# Asterisk is an Open Source PBX and telephony toolkit.
+# .
+# This package provides support for connecting Bluetooth devices to the
+# Asterisk PBX. It allows you to:
+#   * Send and receive PSTN calls and SMS messages over a Bluetooth phone.
+#   * Use a Bluetooth handset as a local phone connected to your PBX.
+# .
+# For more information about the Asterisk PBX, have a look at the Asterisk
+# package.
 
-Package: asterisk-tests
-Architecture: linux-any
-Depends:
- asterisk (= ${binary:Version}),
- ${misc:Depends},
- ${shlibs:Depends}
-Description: internal test modules of the Asterisk PBX
- Asterisk is an Open Source PBX and telephony toolkit.
- .
- This package provides modules that run various functionality tests.
- You would normally not install this package unless you test a build
- of Asterisk.
- .
- For more information about the Asterisk PBX, have a look at the Asterisk
- package.
+#Package: asterisk-tests
+#Architecture: linux-any
+#Depends:
+# asterisk (= ${binary:Version}),
+# ${misc:Depends},
+# ${shlibs:Depends}
+#Description: internal test modules of the Asterisk PBX
+# Asterisk is an Open Source PBX and telephony toolkit.
+# .
+# This package provides modules that run various functionality tests.
+# You would normally not install this package unless you test a build
+# of Asterisk.
+# .
+# For more information about the Asterisk PBX, have a look at the Asterisk
+# package.
 
 Package: asterisk-doc
 Architecture: all
@@ -378,3 +378,15 @@ Description: No configuration files for Asterisk
  This package is a stub that provides empty config for Asterisk.
  .
  It assumes you'll be managing your own config.
+
+Package: asterisk-extra-sounds
+Provides: asterisk-extra-sounds
+Depends:
+ ${misc:Depends}
+Recommends:
+ asterisk
+Architecture: all
+Description: Extra sound files for Asterisk
+ Asterisk is an Open Source PBX and telephony toolkit.
+ .
+ This package contains extra sound files for Asterisk.

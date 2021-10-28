@@ -18,7 +18,7 @@ DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/buildflags.mk
 
 # Sanity check for a stable release:
-SAVED_ABI_HASH = 1fb7f5c06d7a2052e38d021b3d8ca151
+SAVED_ABI_HASH = da6642af068ee5e6490c5b1d2cc1d238
 
 export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
@@ -86,6 +86,7 @@ override_dh_auto_configure:
 		--with-gsm				\
 		--with-imap=system			\
 		--without-pwlib				\
+		--enable-dev-mode      \
 		$(if $(EXP_RELEASE),,--without-sdl) \
 		${ENABLE_DEBUG} || { cat config.log; exit 1; }
 
@@ -94,7 +95,11 @@ override_dh_auto_configure:
 override_dh_auto_build:
 	$(MAKE) menuselect.makeopts BUILD_CFLAGS="$(CFLAGS) $(CPPFLAGS)" BUILD_LDFLAGS="$(LDFLAGS)"
 	menuselect/menuselect --enable app_macro menuselect.makeopts
-	menuselect/menuselect --enable codec_opus_open_source menuselect.makeopts
+	menuselect/menuselect --enable codec_opus menuselect.makeopts
+	menuselect/menuselect --enable EXTRA-SOUNDS-EN-WAV menuselect.makeopts
+	menuselect/menuselect --enable EXTRA-SOUNDS-EN-ULAW menuselect.makeopts
+	menuselect/menuselect --enable EXTRA-SOUNDS-EN-ALAW menuselect.makeopts
+	menuselect/menuselect --enable EXTRA-SOUNDS-EN-GSM menuselect.makeopts
 	@if [ "x${ENABLE_DEBUG}" != "x" ] ; then \
 		menuselect/menuselect --enable BETTER_BACKTRACES menuselect.makeopts ; \
 		menuselect/menuselect --enable DEBUG_THREADS menuselect.makeopts ; \
@@ -110,11 +115,13 @@ override_dh_auto_build:
 	    [ -n "$(EXP_RELEASE)" ] || exit 1; \
 	  fi
 
-SND_FILE=asterisk-core-sounds-en-gsm-1.4.20.tar.gz
+SND_FILES=$(find . -iname *sounds*.gz)
 override_dh_clean:
-	if [ -r sounds/$(SND_FILE) ]; then mv sounds/$($SND_FILE) debian/; fi
-	GREP=grep AWK=awk $(MAKE) distclean
-	if [ -r debian/$(SND_FILE) ]; then mv debian/$(SND_FILE) sounds/; fi
+	@for SND_FILE in $(SND_FILES); do \
+		if [ -r sounds/$(SND_FILE) ]; then mv sounds/$($SND_FILE) debian/; fi; \
+	  GREP=grep AWK=awk $(MAKE) distclean; \
+	  if [ -r debian/$(SND_FILE) ]; then mv debian/$(SND_FILE) sounds/; fi; \
+	done
 
 	[ ! -f .version.debian_sav ] || mv .version.debian_sav .version
 	if [ -f configure.debian_sav ]; then mv configure.debian_sav configure; fi
@@ -162,10 +169,6 @@ override_dh_install-arch:
 		    && rm -f $$extra_packs
 
 	# Rename dh_install file for -imapstorage and -odbcstorage.
-	mv $(CURDIR)/debian/asterisk-voicemail-imapstorage/usr/lib/asterisk/modules/app_voicemail_imapstorage.so \
-		$(CURDIR)/debian/asterisk-voicemail-imapstorage/usr/lib/asterisk/modules/app_voicemail.so
-	mv $(CURDIR)/debian/asterisk-voicemail-odbcstorage/usr/lib/asterisk/modules/app_voicemail_odbcstorage.so \
-		$(CURDIR)/debian/asterisk-voicemail-odbcstorage/usr/lib/asterisk/modules/app_voicemail.so
 
 override_dh_fixperms:
 	dh_fixperms
