@@ -1,3 +1,9 @@
+asterisk (1:21.0.0-0cpqd1+ubu22.04) jammy; urgency=medium
+
+  * OSSO build of 21.0.0 for Jammy
+
+ -- Fabiano Zaruch Chinasso (work) <fzaruch@cpqd.com.br>  Fri, 22 Oct 2021 16:53:00 -0300
+
 asterisk (1:18.7.1-0cpqd1+ubu18.04) bionic; urgency=medium
 
   * OSSO build of 18.7.1 for Bionic

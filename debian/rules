@@ -94,12 +94,19 @@ override_dh_auto_configure:
 
 override_dh_auto_build:
 	$(MAKE) menuselect.makeopts BUILD_CFLAGS="$(CFLAGS) $(CPPFLAGS)" BUILD_LDFLAGS="$(LDFLAGS)"
-	menuselect/menuselect --enable app_macro menuselect.makeopts
+	#menuselect/menuselect --enable app_macro menuselect.makeopts
 	menuselect/menuselect --enable codec_opus menuselect.makeopts
 	menuselect/menuselect --enable EXTRA-SOUNDS-EN-WAV menuselect.makeopts
 	menuselect/menuselect --enable EXTRA-SOUNDS-EN-ULAW menuselect.makeopts
 	menuselect/menuselect --enable EXTRA-SOUNDS-EN-ALAW menuselect.makeopts
 	menuselect/menuselect --enable EXTRA-SOUNDS-EN-GSM menuselect.makeopts
+	#menuselect/menuselect --enable app_mysql menuselect.makeopts
+	#menuselect/menuselect --enable cdr_mysql menuselect.makeopts
+	#menuselect/menuselect --enable chan_ooh323 menuselect.makeopts
+	#menuselect/menuselect --enable format_mp3 menuselect.makeopts
+	#menuselect/menuselect --enable res_config_mysql menuselect.makeopts
+	#menuselect/menuselect --enable chan_mobile menuselect.makeopts
+	#menuselect/menuselect --enable chan_vpb menuselect.makeopts
 	@if [ "x${ENABLE_DEBUG}" != "x" ] ; then \
 		menuselect/menuselect --enable BETTER_BACKTRACES menuselect.makeopts ; \
 		menuselect/menuselect --enable DEBUG_THREADS menuselect.makeopts ; \
@@ -169,6 +176,10 @@ override_dh_install-arch:
 		    && rm -f $$extra_packs
 
 	# Rename dh_install file for -imapstorage and -odbcstorage.
+	#mv $(CURDIR)/debian/asterisk-voicemail-imapstorage/usr/lib/asterisk/modules/app_voicemail_imapstorage.so \
+	#	$(CURDIR)/debian/asterisk-voicemail-imapstorage/usr/lib/asterisk/modules/app_voicemail.so
+	#mv $(CURDIR)/debian/asterisk-voicemail-odbcstorage/usr/lib/asterisk/modules/app_voicemail_odbcstorage.so \
+	#	$(CURDIR)/debian/asterisk-voicemail-odbcstorage/usr/lib/asterisk/modules/app_voicemail.so
 
 override_dh_fixperms:
 	dh_fixperms

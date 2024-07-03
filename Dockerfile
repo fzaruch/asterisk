@@ -1,5 +1,5 @@
 ARG os=amd64/ubuntu
-ARG oscodename=18.04
+ARG oscodename=22.04
 FROM $os:$oscodename
 # FROM $(os):$(oscodename)
 MAINTAINER Walter Doekes <wjdoekes+asterisk-deb@osso.nl>
@@ -15,16 +15,16 @@ RUN sed -i -e 's://[^/]*/\(debian\|ubuntu\)://apt.osso.nl/\1:' \
 #RUN printf 'deb http://PPA/ubuntu xenial COMPONENT\n\
 #deb-src http://PPA/ubuntu xenial COMPONENT\r\n' >/etc/apt/sources.list.d/osso-ppa.list
 #RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 0xBEAD51B6B36530F5
-RUN apt-get update -q && apt-get install -y apt-utils && apt-get dist-upgrade -y
+RUN apt-get update -q && apt-get install -y apt && apt-get dist-upgrade -y
 RUN apt-get update -q && apt-get install -y \
     bzip2 ca-certificates curl git \
     build-essential dh-autoreconf devscripts dpkg-dev equivs quilt
 
 # Import ARGs
 ARG osdistro=ubuntu
-ARG oscodename=bionic
+ARG oscodename=jammy
 ARG upname=asterisk
-ARG upversion=18.7.1
+ARG upversion=21.0.0
 ARG debepoch=1:
 ARG debversion=0cpqd1
 
@@ -64,7 +64,7 @@ RUN apt-get update -q && \
 
 # Build!
 COPY debian debian
-RUN DEB_BUILD_OPTIONS=parallel=6 dpkg-buildpackage -us -uc -sa
+RUN DEB_BUILD_OPTIONS=parallel=6 dpkg-buildpackage -us -uc -sa -b
 
 # Do linker checks:
 # (debian/tmp holds everything, debian/asterisk-modules only the modules
@@ -93,11 +93,9 @@ RUN echo "Install checks:" && cd .. && . /etc/os-release && \
     fullversion=${upversion}-${debversion}+${osdistshort}${VERSION_ID} && \
     apt-get update -q && apt-get install -y asterisk-core-sounds-en && \
     dpkg -i \
-      asterisk_${fullversion}_*.deb \
-      # asterisk-config OR asterisk-config-empty
-      asterisk-config_${fullversion}_*.deb  \
-      asterisk-dbgsym_${fullversion}_*.d*eb \
       asterisk-modules_${fullversion}_*.deb \
+      asterisk-config_${fullversion}_*.deb \
+      asterisk_${fullversion}_*.deb \
       asterisk-modules-dbgsym_${fullversion}_*.d*eb
 
 # Application and library version checks:

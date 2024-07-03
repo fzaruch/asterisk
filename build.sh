@@ -3,9 +3,9 @@ cd "$(dirname "$0")"  # jump to curdir
 
 # Pass these on the command line.
 osdistro="ubuntu"
-oscodename="bionic"
+oscodename="jammy"
 upname=asterisk
-upversion=${1:-18.7.1}  # asterisk version, e.g. 13.22.0
+upversion=${1:-21.0.0}  # asterisk version, e.g. 13.22.0
 debversion=${2:-0cpqd1}  # deb build version, e.g. 0osso1
 # echo "Usage: $0 11.25.3 0osso1" >&2
 
